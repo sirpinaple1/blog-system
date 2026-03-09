@@ -1,2 +1,2 @@
-build = ["mvn clean package -DskipTests"]
-start = "java -jar target/*.jar"
+buildCommand = "mvn clean package -DskipTests"
+startCommand = "java -jar target/blog-system-1.0.0.jar"
