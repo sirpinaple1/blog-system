@@ -1,14 +1,14 @@
 server:
-  port: 8080
+  port: ${PORT:8080}
 
 spring:
   application:
     name: blog-system
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/blog_system?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
-    username: root
-    password: root
+    url: ${DATABASE_URL:jdbc:mysql://localhost:3306/blog_system?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false}
+    username: ${DATABASE_USERNAME:root}
+    password: ${DATABASE_PASSWORD:root}
   servlet:
     multipart:
       max-file-size: 10MB
@@ -18,26 +18,20 @@ mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       id-type: auto
-      logic-delete-field: deleted
-      logic-delete-value: 1
-      logic-not-delete-value: 0
 
 # JWT配置
 jwt:
-  secret: blog-system-secret-key-2024
+  secret: ${JWT_SECRET:blog-system-secret-key-2024}
   expiration: 86400000
 
-# Swagger配置
+# Swagger配置 (生产环境关闭)
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
-  api-docs:
-    path: /v3/api-docs
 
 logging:
   level:
-    com.blog: debug
+    com.blog: info
