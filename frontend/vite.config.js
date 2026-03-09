@@ -9,11 +9,13 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src')
     }
   },
-  server: {
+  preview: {
     port: 3000,
+    host: '0.0.0.0',
+    allowedHosts: true,
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
+        target: 'https://blog-backend-production-ef04.up.railway.app',
         changeOrigin: true
       }
     }
